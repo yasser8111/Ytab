@@ -1,0 +1,151 @@
+[
+  {
+    "id": "col1",
+    "groups": [
+      {
+        "id": 1,
+        "title": "Search & AI",
+        "sites": [
+          {
+            "id": 101,
+            "title": "Google",
+            "description": "Search the world's information and web resources.",
+            "url": "https://google.com",
+            "icon": "https://www.google.com/s2/favicons?domain=google.com&sz=128"
+          },
+          {
+            "id": 102,
+            "title": "ChatGPT",
+            "description": "AI conversational model for assistance and code generation.",
+            "url": "https://chatgpt.com",
+            "icon": "https://www.google.com/s2/favicons?domain=openai.com&sz=128"
+          },
+          {
+            "id": 103,
+            "title": "Claude",
+            "description": "Next-generation AI assistant built by Anthropic.",
+            "url": "https://claude.ai",
+            "icon": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col2",
+    "groups": [
+      {
+        "id": 2,
+        "title": "Development",
+        "sites": [
+          {
+            "id": 201,
+            "title": "GitHub",
+            "description": "Where the world builds software and manages code repositories.",
+            "url": "https://github.com",
+            "icon": "https://www.google.com/s2/favicons?domain=github.com&sz=128"
+          },
+          {
+            "id": 202,
+            "title": "Vercel",
+            "description": "Build and deploy web applications instantly with zero config.",
+            "url": "https://vercel.com",
+            "icon": "https://www.google.com/s2/favicons?domain=vercel.com&sz=128"
+          },
+          {
+            "id": 203,
+            "title": "Supabase",
+            "description": "The open source Firebase alternative for database and auth.",
+            "url": "https://supabase.com",
+            "icon": "https://www.google.com/s2/favicons?domain=supabase.com&sz=128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col3",
+    "groups": [
+      {
+        "id": 3,
+        "title": "Design & UI",
+        "sites": [
+          {
+            "id": 301,
+            "title": "Figma",
+            "description": "The collaborative interface design tool for modern product teams.",
+            "url": "https://figma.com",
+            "icon": "https://www.google.com/s2/favicons?domain=figma.com&sz=128"
+          },
+          {
+            "id": 302,
+            "title": "Tailwind CSS",
+            "description": "A utility-first CSS framework for rapid UI development.",
+            "url": "https://tailwindcss.com",
+            "icon": "https://www.google.com/s2/favicons?domain=tailwindcss.com&sz=128"
+          },
+          {
+            "id": 303,
+            "title": "HeroUI",
+            "description": "Beautiful, fast, and modern React UI library.",
+            "url": "https://heroui.com",
+            "icon": "https://www.google.com/s2/favicons?domain=heroui.com&sz=128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col4",
+    "groups": [
+      {
+        "id": 4,
+        "title": "Social & Media",
+        "sites": [
+          {
+            "id": 401,
+            "title": "X",
+            "description": "Social network platform for real-time news and updates.",
+            "url": "https://x.com",
+            "icon": "https://www.google.com/s2/favicons?domain=x.com&sz=128"
+          },
+          {
+            "id": 402,
+            "title": "YouTube",
+            "description": "Enjoy the videos and music you love uploaded by creators.",
+            "url": "https://youtube.com",
+            "icon": "https://www.google.com/s2/favicons?domain=youtube.com&sz=128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col5",
+    "groups": [
+      {
+        "id": 5,
+        "title": "Productivity",
+        "sites": [
+          {
+            "id": 501,
+            "title": "Notion",
+            "description": "Connected workspace for wiki, docs, and project management.",
+            "url": "https://notion.so",
+            "icon": "https://www.google.com/s2/favicons?domain=notion.so&sz=128"
+          },
+          {
+            "id": 502,
+            "title": "Gmail",
+            "url": "https://mail.google.com",
+            "icon": "https://www.google.com/s2/favicons?domain=mail.google.com&sz=128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col6",
+    "groups": []
+  }
+]

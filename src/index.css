@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+:root {
+  --accent-color: #3b82f6;
+  --card-opacity: 0.6;
+  --card-blur: 12px;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer utilities {
+  .card-bg {
+    background-color: rgba(255, 255, 255, var(--card-opacity, 0.6)) !important;
+    backdrop-filter: blur(var(--card-blur, 12px)) !important;
+    -webkit-backdrop-filter: blur(var(--card-blur, 12px)) !important;
+    transform: translateZ(0) !important;
+    isolation: isolate !important;
+  }
+  .secondary-bg {
+    background-color: rgba(255, 255, 255, calc(var(--card-opacity) + 0.2));
+  }
+  .secondary-text {
+    color: rgba(255, 255, 255, calc(var(--card-opacity) + 0.2));
+  }
+  .bg-accent {
+    background-color: var(--accent-color);
+  }
+  .text-accent {
+    color: var(--accent-color);
+  }
+  .border-accent {
+    border-color: var(--accent-color);
+  }
+}
+
+@layer components {
+  .tabs__indicator {
+    box-shadow: none !important;
+    background-color: var(--accent-color);
+  }
+
+  .button--primary {
+    background-color: var(--accent-color) !important;
+    color: #ffffff;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+
+  .input--primary,
+  .input--secondary {
+    &:focus,
+    &[data-focused="true"] {
+      border-color: var(--accent-color) !important;
+      --tw-ring-color: var(--accent-color) !important;
+    }
+  }
+
+  .slider {
+    .slider__fill,
+    .slider__thumb {
+      background-color: var(--accent-color);
+    }
+
+    &[data-orientation="horizontal"] {
+      .slider__track {
+        .slider__fill {
+          left: auto !important;
+          right: 0 !important;
+          transform-origin: right center;
+        }
+
+        &[data-fill-start="true"] {
+          border-inline-end-color: var(--accent-color) !important;
+          border-inline-start-color: transparent !important;
+        }
+
+        &[data-fill-end="true"] {
+          border-inline-start-color: var(--accent-color) !important;
+          border-inline-end-color: var(--accent-color) !important;
+        }
+      }
+    }
+
+    &[data-orientation="vertical"] .slider__track {
+      &[data-fill-start="true"] {
+        border-bottom-color: var(--accent-color) !important;
+      }
+      &[data-fill-end="true"] {
+        border-top-color: var(--accent-color) !important;
+      }
+    }
+  }
+}

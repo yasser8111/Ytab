@@ -34,9 +34,8 @@ export function DeleteConfirmModal({
                 {cancelText}
               </Button>
               <Button
-                variant="primary"
+                variant="danger"
                 onPress={handleConfirm}
-                className="bg-danger"
               >
                 {confirmText}
               </Button>

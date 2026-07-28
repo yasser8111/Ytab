@@ -31,7 +31,7 @@ export function ClockWidget({ isOverlay, attributes, listeners, onDelete }) {
 
   return (
     <Card
-      className={`group/card card-bg w-full p-3 ${isOverlay ? "shadow-2xl scale-101" : ""}`}
+      className={`group/card bg-card w-full p-3 ${isOverlay ? "shadow-2xl scale-101" : ""}`}
     >
       <Card.Header
         {...attributes}
@@ -58,7 +58,7 @@ export function ClockWidget({ isOverlay, attributes, listeners, onDelete }) {
               size="sm"
               className="hover:bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
             >
-              <EllipsisVertical className="size-4 shrink-0 transition-colors text-muted" />
+              <EllipsisVertical className="size-4 shrink-0 text-black" />
             </Button>
             <Dropdown.Popover placement="bottom left">
               <Dropdown.Menu
@@ -148,9 +148,7 @@ export function ClockWidget({ isOverlay, attributes, listeners, onDelete }) {
         </div>
 
         {showDate && (
-          <span className="text-xs mt-2 font-medium">
-            {formattedDate}
-          </span>
+          <span className="text-xs mt-2 font-medium">{formattedDate}</span>
         )}
       </Card.Content>
     </Card>

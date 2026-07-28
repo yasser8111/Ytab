@@ -90,7 +90,7 @@ export function Pages() {
         onSelectionChange={(key) => setActivePage(String(key))}
         className="min-w-0 overflow-hidden"
       >
-        <Tabs.ListContainer className="min-w-0 secondary-bg">
+        <Tabs.ListContainer className="min-w-0 bg-secondary">
           <Tabs.List aria-label="Pages" className="min-w-0 w-max">
             {pages.map((page) => {
               const isSelected = activePageId === page.id;
@@ -192,7 +192,7 @@ export function Pages() {
             variant="ghost"
             size="sm"
             onClick={handleAddPage}
-            className="shrink-0 hover:secondary-bg"
+            className="shrink-0 hover:bg-secondary"
           >
             <Plus />
           </Button>
@@ -239,7 +239,7 @@ export function Buttons({ onOpenSettings, onOpenCustomize }) {
     <div className="shrink-0">
       <ButtonGroup variant="tertiary">
         <Dropdown isOpen={isOpen} onOpenChange={setIsOpen}>
-          <Button className="secondary-bg" variant="tertiary">
+          <Button className="bg-secondary" variant="tertiary">
             Add Widget
           </Button>
           <Dropdown.Popover placement="bottom right">
@@ -255,14 +255,14 @@ export function Buttons({ onOpenSettings, onOpenCustomize }) {
             </Dropdown.Menu>
           </Dropdown.Popover>
         </Dropdown>
-        <Button onPress={onOpenCustomize} className="secondary-bg">
+        <Button onPress={onOpenCustomize} className="bg-secondary">
           Customize
         </Button>
-        <Button onPress={onOpenSettings} className="secondary-bg">
+        <Button onPress={onOpenSettings} className="bg-secondary">
           Settings
         </Button>
         <Button
-          className="secondary-bg"
+          className="bg-secondary"
           onPress={() => toast.danger("Something went wrong")}
         >
           About

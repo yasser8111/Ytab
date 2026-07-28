@@ -81,7 +81,7 @@ export const GroupCard = memo(function GroupCard({
   return (
     <>
       <Card
-        className={`group/card card-bg w-full min-h-32 p-3 transition-all duration-100 ease-in-out ${
+        className={`group/card bg-card w-full min-h-32 p-3 transition-all duration-100 ease-in-out ${
           isOverlay ? "shadow-2xl scale-101" : "shadow-sm scale-100"
         }`}
       >
@@ -94,7 +94,9 @@ export const GroupCard = memo(function GroupCard({
 
           <div
             className={`flex items-center gap-1 transition-opacity duration-200 ${
-              isMenuOpen ? "opacity-100" : "opacity-0 group-hover/card:opacity-100"
+              isMenuOpen
+                ? "opacity-100"
+                : "opacity-0 group-hover/card:opacity-100"
             }`}
             onClick={(e) => e.stopPropagation()}
             onMouseDown={(e) => e.stopPropagation()}
@@ -105,7 +107,7 @@ export const GroupCard = memo(function GroupCard({
               aria-label="Add Site"
               variant="ghost"
               size="sm"
-              className="hover:bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
+              className="bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsAddSiteOpen(true);
@@ -113,7 +115,7 @@ export const GroupCard = memo(function GroupCard({
               onPointerDown={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
             >
-              <Plus className="size-4 shrink-0 transition-colors text-muted hover:text-foreground" />
+              <Plus className="size-4 shrink-0 text-black" />
             </Button>
 
             <Dropdown onOpenChange={setIsMenuOpen}>
@@ -124,7 +126,7 @@ export const GroupCard = memo(function GroupCard({
                 size="sm"
                 className="hover:bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
               >
-                <EllipsisVertical className="size-4 shrink-0 transition-colors text-muted hover:text-foreground" />
+                <EllipsisVertical className="size-4 shrink-0 text-black" />
               </Button>
               <Dropdown.Popover placement="bottom left">
                 <Dropdown.Menu
@@ -140,13 +142,21 @@ export const GroupCard = memo(function GroupCard({
                   <Dropdown.Item id="rename" textValue="rename">
                     <div className="flex items-center gap-2">
                       <Edit3 className="size-4" />
-                      <Label className="cursor-pointer capitalize">Rename</Label>
+                      <Label className="cursor-pointer capitalize">
+                        Rename
+                      </Label>
                     </div>
                   </Dropdown.Item>
-                  <Dropdown.Item id="delete" textValue="delete" variant="danger">
+                  <Dropdown.Item
+                    id="delete"
+                    textValue="delete"
+                    variant="danger"
+                  >
                     <div className="flex items-center gap-2">
                       <Trash2 className="size-4 text-danger" />
-                      <Label className="cursor-pointer capitalize text-danger">Delete</Label>
+                      <Label className="cursor-pointer capitalize text-danger">
+                        Delete
+                      </Label>
                     </div>
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -196,12 +206,18 @@ export const GroupCard = memo(function GroupCard({
 
 export const Group = memo(function Group(props) {
   const { id } = props;
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({
-      id,
-      data: { type: "group" },
-      animateLayoutChanges: customAnimateLayoutChanges,
-    });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id,
+    data: { type: "group" },
+    animateLayoutChanges: customAnimateLayoutChanges,
+  });
 
   const style = {
     transform: CSS.Translate.toString(transform),
@@ -217,12 +233,18 @@ export const Group = memo(function Group(props) {
 });
 
 const SortableSiteItem = memo(function SortableSiteItem({ site }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({
-      id: site.id,
-      data: { type: "site" },
-      animateLayoutChanges: customAnimateLayoutChanges,
-    });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: site.id,
+    data: { type: "site" },
+    animateLayoutChanges: customAnimateLayoutChanges,
+  });
 
   const style = {
     transform: CSS.Translate.toString(transform),

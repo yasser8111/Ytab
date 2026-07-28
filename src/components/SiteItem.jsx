@@ -28,7 +28,7 @@ export const SiteItem = memo(function SiteItem({
     <>
       <Card
         onClick={handleClick}
-        className={`group/site secondary-bg w-full p-2 cursor-pointer rounded-xl bg-gray-100 transition-all select-none ${
+        className={`bg-secondary group/site w-full p-2 cursor-pointer rounded-xl  transition-all select-none ${
           isOverlay ? "shadow-md scale-101" : "shadow-none"
         }`}
       >

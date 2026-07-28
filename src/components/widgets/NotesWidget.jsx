@@ -107,7 +107,7 @@ export function NotesWidget({
     }
   }, [isPreview, autoResize]);
 
-  // Local state updates instantly (no lag while typing).  
+  // Local state updates instantly (no lag while typing).
   // Store write is debounced — fires 400ms after the user stops typing,
   // preventing a Zustand update (and re-render cascade) on every keystroke.
   const handleChange = useCallback(
@@ -120,7 +120,7 @@ export function NotesWidget({
         updateNoteContent?.(id, val);
       }, 400);
     },
-    [autoResize, id, updateNoteContent]
+    [autoResize, id, updateNoteContent],
   );
 
   const isEmpty = text.trim() === "";
@@ -128,7 +128,7 @@ export function NotesWidget({
   return (
     <>
       <Card
-        className={`group/card card-bg w-full p-3 ${
+        className={`group/card bg-card w-full p-3 ${
           isOverlay ? "shadow-2xl scale-101" : ""
         }`}
       >
@@ -182,7 +182,7 @@ export function NotesWidget({
                   size="sm"
                   className="hover:bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
                 >
-                  <EllipsisVertical className="size-4 shrink-0 transition-colors text-muted" />
+                  <EllipsisVertical className="size-4 shrink-0 text-black" />
                 </Button>
                 <Dropdown.Popover placement="bottom left">
                   <Dropdown.Menu
@@ -250,7 +250,7 @@ export function NotesWidget({
               }
               rows={3}
               style={{ resize: "none", overflow: "hidden" }}
-              className="w-full secondary-bg border-none focus:outline-none p-2 text-xs rounded-xl text-foreground placeholder:text-muted font-mono leading-relaxed"
+              className="w-full bg-secondary border-none focus:outline-none p-2 text-xs rounded-xl text-foreground placeholder:text-muted font-mono leading-relaxed"
               onClick={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
               onPointerDown={(e) => e.stopPropagation()}

@@ -1,21 +1,9 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
-import {
-  Modal,
-  Label,
-  Slider,
-  ColorPicker,
-  ColorArea,
-  ColorSlider,
-  ColorSwatch,
-  ColorSwatchPicker,
-  ColorField,
-  Button,
-  parseColor,
-} from "@heroui/react";
-import { Shuffle } from "lucide-react";
+import { Modal, Label, Slider, ColorSwatchPicker } from "@heroui/react";
+import { Pipette } from "lucide-react";
 
-const colors = [
+const presetColors = [
   "#F43F5E",
   "#D946EF",
   "#8B5CF6",
@@ -25,48 +13,47 @@ const colors = [
   "#84CC16",
 ];
 
-const colorPresets = [
-  "#F43F5E",
-  "#D946EF",
-  "#8B5CF6",
-  "#3B82F6",
-  "#06B6D4",
-  "#10B981",
-];
-
 export function CustomizeModal({ isOpen, onOpenChange }) {
   const { customization, updateCustomization } = useTheme();
+  const [customColor, setCustomColor] = useState("#EAB308");
 
-  const [color, setColor] = useState(() =>
-    parseColor(customization.accentColor || "#3B82F6"),
+  const activeColor = customization.accentColor || presetColors[0];
+
+  const isPresetColor = presetColors.some(
+    (c) => c.toLowerCase() === activeColor.toLowerCase()
   );
 
+  const isEyeDropperActive = !isPresetColor;
+
   useEffect(() => {
-    if (customization.accentColor) {
-      setColor(parseColor(customization.accentColor));
+    if (isEyeDropperActive) {
+      setCustomColor(activeColor);
     }
-  }, [customization.accentColor]);
+  }, [activeColor, isEyeDropperActive]);
 
-  const handleColorChange = (newColor) => {
-    setColor(newColor);
-    const hex = newColor.toString("hex");
-    updateCustomization("accentColor", hex.startsWith("#") ? hex : `#${hex}`);
-  };
-
-  const handleSwatchSelect = (selectedColor) => {
-    const hex = selectedColor.toString();
-    setColor(parseColor(hex));
+  const handleSwatchChange = (colorValue) => {
+    if (!colorValue) return;
+    const hex = colorValue.toString();
     updateCustomization("accentColor", hex);
   };
 
-  const shuffleColor = () => {
-    const randomHue = Math.floor(Math.random() * 360);
-    const randomSaturation = 50 + Math.floor(Math.random() * 50);
-    const randomLightness = 40 + Math.floor(Math.random() * 30);
-    const newColor = parseColor(
-      `hsl(${randomHue}, ${randomSaturation}%, ${randomLightness}%)`,
-    );
-    handleColorChange(newColor);
+  const handleEyeDropper = async () => {
+    if (!("EyeDropper" in window)) {
+      alert("EyeDropper API is not supported in your browser.");
+      return;
+    }
+
+    try {
+      const eyeDropper = new window.EyeDropper();
+      const result = await eyeDropper.open();
+      if (result?.sRGBHex) {
+        const hex = result.sRGBHex;
+        setCustomColor(hex);
+        updateCustomization("accentColor", hex);
+      }
+    } catch (err) {
+      // User cancelled
+    }
   };
 
   return (
@@ -88,11 +75,10 @@ export function CustomizeModal({ isOpen, onOpenChange }) {
                 </label>
                 <div className="flex items-center gap-2">
                   <ColorSwatchPicker
-                    value={customization.accentColor}
-                    onChange={handleSwatchSelect}
-                    className="flex items-center gap-2"
+                    value={isEyeDropperActive ? null : activeColor}
+                    onChange={handleSwatchChange}
                   >
-                    {colors.map((color) => (
+                    {presetColors.map((color) => (
                       <ColorSwatchPicker.Item key={color} color={color}>
                         <ColorSwatchPicker.Swatch />
                         <ColorSwatchPicker.Indicator />
@@ -100,53 +86,21 @@ export function CustomizeModal({ isOpen, onOpenChange }) {
                     ))}
                   </ColorSwatchPicker>
 
-                  <ColorPicker value={color} onChange={handleColorChange}>
-                    <ColorPicker.Trigger className="p-0 border-none bg-transparent hover:bg-transparent min-w-0">
-                      <div className="relative flex items-center justify-center size-8 rounded-full border-2 border-dashed border-default-400 hover:border-primary transition-colors cursor-pointer overflow-hidden p-0.5">
-                        <ColorSwatch className="size-full rounded-full" />
-                      </div>
-                    </ColorPicker.Trigger>
-                    <ColorPicker.Popover className="gap-2">
-                      <ColorArea
-                        aria-label="Color area"
-                        className="max-w-full"
-                        colorSpace="hsb"
-                        xChannel="saturation"
-                        yChannel="brightness"
-                      >
-                        <ColorArea.Thumb />
-                      </ColorArea>
-                      <div className="flex items-center gap-2 px-1">
-                        <ColorSlider
-                          aria-label="Hue slider"
-                          channel="hue"
-                          className="flex-1"
-                          colorSpace="hsb"
-                        >
-                          <ColorSlider.Track>
-                            <ColorSlider.Thumb />
-                          </ColorSlider.Track>
-                        </ColorSlider>
-                        <Button
-                          isIconOnly
-                          aria-label="Shuffle color"
-                          size="sm"
-                          variant="tertiary"
-                          onPress={shuffleColor}
-                        >
-                          <Shuffle className="size-4 shrink-0" />
-                        </Button>
-                      </div>
-                      <ColorField aria-label="Color field">
-                        <ColorField.Group variant="secondary">
-                          <ColorField.Prefix>
-                            <ColorSwatch size="xs" />
-                          </ColorField.Prefix>
-                          <ColorField.Input />
-                        </ColorField.Group>
-                      </ColorField>
-                    </ColorPicker.Popover>
-                  </ColorPicker>
+                  <button
+                    type="button"
+                    onClick={handleEyeDropper}
+                    style={{
+                      backgroundColor: customColor,
+                      boxShadow: isEyeDropperActive
+                        ? `0 0 0 2px var(--bg-background, #fff), 0 0 0 4px ${customColor}`
+                        : "none",
+                    }}
+                    className={`relative flex shrink-0 items-center justify-center rounded-full transition-all duration-200 hover:scale-105 ${isEyeDropperActive ? "h-6 w-6 m-1" : "h-7 w-7"
+                      }`}
+                    title="Pick custom color"
+                  >
+                    <Pipette className="h-3.5 w-3.5 text-white drop-shadow-md" />
+                  </button>
                 </div>
               </div>
 
@@ -156,10 +110,10 @@ export function CustomizeModal({ isOpen, onOpenChange }) {
                   minValue={0}
                   maxValue={1}
                   step={0.05}
-                  value={customization.opacity}
+                  value={customization.opacity ?? 1}
                   onChange={(val) => updateCustomization("opacity", val)}
                 >
-                  <div className="flex justify-between items-center mb-1 dir-rtl">
+                  <div className="flex justify-between items-center mb-1">
                     <Label className="text-sm font-medium">Card Opacity</Label>
                     <Slider.Output className="text-sm font-medium" />
                   </div>
@@ -176,11 +130,13 @@ export function CustomizeModal({ isOpen, onOpenChange }) {
                   minValue={0}
                   maxValue={40}
                   step={1}
-                  value={customization.blur}
+                  value={customization.blur ?? 0}
                   onChange={(val) => updateCustomization("blur", val)}
                 >
-                  <Label>Card Blur (px)</Label>
-                  <Slider.Output />
+                  <div className="flex justify-between items-center mb-1">
+                    <Label className="text-sm font-medium">Card Blur</Label>
+                    <Slider.Output className="text-sm font-medium" />
+                  </div>
                   <Slider.Track>
                     <Slider.Fill />
                     <Slider.Thumb />

@@ -90,7 +90,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
 
   return (
     <Card
-      className={`group/card card-bg w-full p-3 ${isOverlay ? "shadow-2xl scale-101" : ""}`}
+      className={`group/card bg-card w-full p-3 ${isOverlay ? "shadow-2xl scale-101" : ""}`}
     >
       <Card.Header
         {...attributes}
@@ -117,7 +117,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
               size="sm"
               className="hover:bg-transparent shadow-none w-6 h-6 min-w-6 p-0"
             >
-              <EllipsisVertical className="size-4 shrink-0 transition-colors text-muted" />
+              <EllipsisVertical className="size-4 shrink-0 text-black" />
             </Button>
             <Dropdown.Popover placement="bottom left">
               <Dropdown.Menu
@@ -230,7 +230,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 size="sm"
                 onClick={resetTimer}
                 aria-label="Reset Timer"
-                className="secondary-bg"
+                className="bg-secondary"
               >
                 <RotateCcw className="size-4" />
               </Button>
@@ -267,7 +267,6 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 size="sm"
                 onClick={() => setIsAutoSwitch(!isAutoSwitch)}
                 aria-label="Auto Switch Mode"
-                className="secondary-bg"
               >
                 {isAutoSwitch ? (
                   <Repeat className="size-4" />
@@ -276,7 +275,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 )}
               </Button>
             </Tooltip.Trigger>
-            <Tooltip.Content placement="bottom">
+            <Tooltip.Content showArrow>
               {isAutoSwitch ? "Disable Auto-start" : "Enable Auto-start"}
             </Tooltip.Content>
           </Tooltip>
@@ -287,7 +286,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
           onSelectionChange={handleModeChange}
           className="w-full"
         >
-          <Tabs.ListContainer className="w-full secondary-bg">
+          <Tabs.ListContainer className="w-full bg-secondary">
             <Tabs.List aria-label="Pomodoro Modes">
               {Object.keys(modeTimes).map((m) => {
                 const isSelected = mode === m;

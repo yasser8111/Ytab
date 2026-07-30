@@ -13,6 +13,29 @@
     "newtab": "index.html"
   },
 
+  "permissions": ["tabs", "storage"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "commands": {
+    "save-all-tabs": {
+      "suggested_key": {
+        "default": "Alt+C",
+        "mac": "Alt+C"
+      },
+      "description": "Save all open tabs to YTab"
+    },
+    "save-single-tab": {
+      "suggested_key": {
+        "default": "Alt+X",
+        "mac": "Alt+X"
+      },
+      "description": "Save current/previous tab to YTab"
+    }
+  },
+
   "action": {
     "default_icon": {
       "16": "icons/icon-16.png",

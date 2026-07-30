@@ -3,11 +3,13 @@ import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Group } from "./Group";
 import { useBoardStore } from "../hooks/useBoardStore";
+import { usePageStore } from "../hooks/usePageStore";
 
 export const Column = memo(function Column({ id }) {
   const { setNodeRef } = useDroppable({ id });
+  const activePageId = usePageStore((s) => s.activePageId);
   const items = useBoardStore(
-    (s) => s.boards[s.activePageId]?.[id] ?? []
+    (s) => s.boards[activePageId]?.[id] ?? []
   );
 
   return (

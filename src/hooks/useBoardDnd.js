@@ -1,11 +1,13 @@
 import { useState, useCallback } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { useBoardStore } from "./useBoardStore";
+import { usePageStore } from "./usePageStore";
 
 const WIDGET_TYPES = new Set(["pomodoro", "clock", "note"]);
 
 export function useBoardDnd() {
-  const columns = useBoardStore((s) => s.boards[s.activePageId] ?? {});
+  const activePageId = usePageStore((s) => s.activePageId);
+  const columns = useBoardStore((s) => s.boards[activePageId] ?? {});
   const setColumns = useBoardStore((s) => s.setColumns);
   const [activeItem, setActiveItem] = useState(null);
   const [activeType, setActiveType] = useState(null);

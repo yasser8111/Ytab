@@ -47,8 +47,8 @@ export const SiteItem = memo(function SiteItem({
             </div>
           )}
 
-          <div className="flex-1 min-w-0 flex flex-col justify-center">
-            <div className="flex items-center justify-between gap-1 w-full">
+          <div className="flex-1 min-w-0 flex flex-col">
+            <div className="flex justify-between items-center gap-1 w-full h-full">
               <h3 className="font-medium text-[11px] text-foreground truncate line-clamp-1 leading-tight pointer-events-none flex-1 min-w-0">
                 {title}
               </h3>

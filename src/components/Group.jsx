@@ -81,9 +81,8 @@ export const GroupCard = memo(function GroupCard({
   return (
     <>
       <Card
-        className={`group/card bg-card w-full min-h-32 p-3 transition-all duration-100 ease-in-out ${
-          isOverlay ? "shadow-2xl scale-101" : "shadow-sm scale-100"
-        }`}
+        className={`group/card bg-card w-full min-h-32 p-3 transition-all duration-100 ease-in-out ${isOverlay ? "shadow-2xl scale-101" : "shadow-sm scale-100"
+          }`}
       >
         <Card.Header
           {...attributes}
@@ -93,11 +92,10 @@ export const GroupCard = memo(function GroupCard({
           <Card.Title>{title}</Card.Title>
 
           <div
-            className={`flex items-center gap-1 transition-opacity duration-200 ${
-              isMenuOpen
-                ? "opacity-100"
-                : "opacity-0 group-hover/card:opacity-100"
-            }`}
+            className={`flex items-center gap-1 transition-opacity duration-200 ${isMenuOpen
+              ? "opacity-100"
+              : "opacity-0 group-hover/card:opacity-100"
+              }`}
             onClick={(e) => e.stopPropagation()}
             onMouseDown={(e) => e.stopPropagation()}
             onPointerDown={(e) => e.stopPropagation()}

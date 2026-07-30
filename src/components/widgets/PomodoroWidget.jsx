@@ -100,11 +100,10 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
         <Card.Title>Pomodoro</Card.Title>
 
         <div
-          className={`transition-opacity duration-200 ${
-            isMenuOpen
+          className={`transition-opacity duration-200 ${isMenuOpen
               ? "opacity-100"
               : "opacity-0 group-hover/card:opacity-100"
-          }`}
+            }`}
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => e.stopPropagation()}
           onPointerDown={(e) => e.stopPropagation()}
@@ -222,7 +221,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <Tooltip delay={1000} closeDelay={300}>
+          <Tooltip delay={3000} closeDelay={300}>
             <Tooltip.Trigger>
               <Button
                 isIconOnly
@@ -235,10 +234,10 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 <RotateCcw className="size-4" />
               </Button>
             </Tooltip.Trigger>
-            <Tooltip.Content placement="bottom">Reset Timer</Tooltip.Content>
+            <Tooltip.Content>Reset Timer</Tooltip.Content>
           </Tooltip>
 
-          <Tooltip delay={1000} closeDelay={300}>
+          <Tooltip delay={3000} closeDelay={300}>
             <Tooltip.Trigger>
               <Button
                 isIconOnly
@@ -254,12 +253,12 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 )}
               </Button>
             </Tooltip.Trigger>
-            <Tooltip.Content placement="bottom">
+            <Tooltip.Content>
               {isRunning ? "Pause Timer" : "Start Timer"}
             </Tooltip.Content>
           </Tooltip>
 
-          <Tooltip delay={1000} closeDelay={300}>
+          <Tooltip delay={3000} closeDelay={300}>
             <Tooltip.Trigger>
               <Button
                 isIconOnly
@@ -275,7 +274,7 @@ export function PomodoroWidget({ isOverlay, attributes, listeners, onDelete }) {
                 )}
               </Button>
             </Tooltip.Trigger>
-            <Tooltip.Content showArrow>
+            <Tooltip.Content>
               {isAutoSwitch ? "Disable Auto-start" : "Enable Auto-start"}
             </Tooltip.Content>
           </Tooltip>

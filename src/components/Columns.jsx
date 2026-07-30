@@ -15,6 +15,7 @@ import { Column } from "./Column";
 import { GroupCard } from "./Group";
 import { SiteItem } from "./SiteItem";
 import { useBoardStore } from "../hooks/useBoardStore";
+import { usePageStore } from "../hooks/usePageStore";
 import { useBoardDnd } from "../hooks/useBoardDnd";
 
 // Sensor config is static — defined outside so it's never recreated.
@@ -22,14 +23,14 @@ const POINTER_SENSOR_OPTIONS = { activationConstraint: { distance: 5 } };
 
 export const Columns = memo(
   forwardRef(function Columns(props, ref) {
-    const activePageId = useBoardStore((s) => s.activePageId);
+    const activePageId = usePageStore((s) => s.activePageId);
     const addWidget    = useBoardStore((s) => s.addWidget);
 
     // ── Only the column IDs (stable: changes only when columns are added/removed,
     //    NOT when items inside them change). useShallow prevents re-renders when
     //    the array content is the same but the reference differs.
     const colIds = useBoardStore(
-      useShallow((s) => Object.keys(s.boards[s.activePageId] ?? {}))
+      useShallow((s) => Object.keys(s.boards[activePageId] ?? {}))
     );
 
     // O(1) lookup for collision detection — recalculated only when colIds changes.

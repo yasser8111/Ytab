@@ -5,11 +5,15 @@ import Columns from "./components/Columns";
 import CustomizeModal from "./components/modals/CustomizeModal";
 import { Background } from "./components/Background";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { useSyncBoardData } from "./hooks/useSyncBoardData";
 
 function MainContent() {
   const columnsRef = useRef(null);
   const { globalStyles } = useTheme();
   const [isCustomizeOpen, setIsCustomizeOpen] = useState(false);
+
+  // Sync board data from background script (chrome.storage)
+  useSyncBoardData();
 
   const handleOpenSettings = () => {
     setModalVariant("complex");
